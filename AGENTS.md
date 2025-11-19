@@ -1,32 +1,25 @@
-# Repository Guidelines
+# Agent Guidelines for Simple Presence
 
-## Project Structure & Module Organization
-- `index.html` renders the single-page layout; keep new sections modular by grouping related markup in self-contained `<section>` blocks.
-- `style.css` holds all styling; add new rules near related selectors and prefer shared utility classes for repeated patterns.
-- `trashpanda.png` is the primary asset; place new media under an `assets/` directory and reference it with relative paths so the static server picks it up.
+## Project Overview
+Static single-page site: `index.html` + `style.css` + `trashpanda.png` logo centered on gradient background.
 
-## Build, Test, and Development Commands
-- `open index.html` — fast manual preview using the system browser.
-- `python3 -m http.server 4173` — serves the site locally, enabling relative asset paths and easy testing on other devices via LAN.
-- `npx serve . --listen 4173` — alternative static server when you need consistent caching headers; installable via npm without project-level deps.
+## Development Commands
+- `open index.html` — quick browser preview
+- `python3 -m http.server 4173` — local dev server
+- `npx serve . --listen 4173` — alternative static server
+- `npx prettier --write index.html style.css` — format before committing
 
-## Coding Style & Naming Conventions
-- Follow semantic HTML, two-space indentation inside elements, and keep attributes on one line until they exceed ~80 chars.
-- CSS currently uses four-space indentation; match that style and group related declarations (layout, typography, color).
-- Prefer descriptive class names (`.hero-logo`) over positional ones, and consolidate shared values into custom properties when repetition appears.
-- Run `npx prettier --write index.html style.css` before committing to ensure consistent whitespace.
+## Code Style
+- **HTML**: Semantic tags, 2-space indentation, attributes single-line unless >80 chars
+- **CSS**: 4-space indentation, group declarations (layout/typography/color), descriptive class names (`.hero-logo` not `.img1`)
+- **Assets**: New media in `assets/`, use relative paths, optimize images ≤1 MB
 
-## Testing Guidelines
-- Smoke-test in at least one Chromium- and one WebKit-based browser; confirm the gradient background and centered logo render identically.
-- When adding responsive tweaks, use browser devtools to verify breakpoint behavior down to 320px width and document any limitations in the PR.
-- No automated tests exist; capture before/after screenshots for visual changes to aid reviewers.
+## Testing
+- No automated tests; manually verify in Chrome + Safari/WebKit
+- Check responsive behavior down to 320px width
+- Capture before/after screenshots for visual changes
 
-## Commit & Pull Request Guidelines
-- Commits must include a concise subject plus a body with a `Tasks:` heading followed by Markdown bullets enumerating what changed and any verification.
-- Reference related issues in the body (`Closes #12`) and keep commits scoped to a single concern.
-- Pull requests should summarize intent, list manual test steps, and attach updated screenshots whenever styles or assets change.
-- Request review once CI (if any) and manual checks pass, and note any follow-up work explicitly.
-
-## Security & Configuration Tips
-- Do not commit API keys or service credentials; this repo is entirely static.
-- Optimize images (≤1 MB) and use relative paths so deployments remain portable across hosting targets.
+## Commits & PRs
+- Commit format: concise subject + body with `Tasks:` heading listing changes
+- Keep commits single-purpose, reference issues (`Closes #12`)
+- PRs need test steps + screenshots for style/asset changes
