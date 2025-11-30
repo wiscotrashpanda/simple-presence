@@ -129,3 +129,30 @@ resource "aws_cloudfront_distribution" "website" {
     Project = var.project_name
   }
 }
+
+# Upload index.html to S3
+resource "aws_s3_object" "index" {
+  bucket       = aws_s3_bucket.website.id
+  key          = "index.html"
+  source       = "../index.html"
+  content_type = "text/html"
+  etag         = filemd5("../index.html")
+}
+
+# Upload style.css to S3
+resource "aws_s3_object" "style" {
+  bucket       = aws_s3_bucket.website.id
+  key          = "style.css"
+  source       = "../style.css"
+  content_type = "text/css"
+  etag         = filemd5("../style.css")
+}
+
+# Upload trashpanda.png to S3
+resource "aws_s3_object" "image" {
+  bucket       = aws_s3_bucket.website.id
+  key          = "trashpanda.png"
+  source       = "../trashpanda.png"
+  content_type = "image/png"
+  etag         = filemd5("../trashpanda.png")
+}
