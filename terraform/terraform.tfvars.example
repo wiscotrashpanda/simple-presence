@@ -1,0 +1,11 @@
+# Example Terraform variables file
+# Copy this file to terraform.tfvars and customize as needed
+# Note: terraform.tfvars is gitignored to prevent committing sensitive data
+
+# AWS region where resources will be created
+# Default: us-east-1
+# aws_region = "us-west-2"
+
+# Project name used for resource naming and tagging
+# Default: simple-presence
+# project_name = "my-custom-name"
